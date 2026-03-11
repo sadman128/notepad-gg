@@ -5,7 +5,7 @@ Just did it out of curiosity and solving a issue
 
 # Notepad GG — Main Interface
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/7ebc4ece-ad8e-4a0c-b9b4-287b62c3bcfe"
+  <img src="https://github.com/user-attachments/assets/7ebc4ece-ad8e-4a0c-b9b4-287b62c3bcfe">
 </p>
 
 
@@ -60,8 +60,17 @@ Just did it out of curiosity and solving a issue
 
 ## Screenshots
 
-![Notepad GG — Column Mode & Themes](<img width="328" height="710" alt="image" src="https://github.com/user-attachments/assets/09be04e9-e810-40c1-9b65-d9e7376db2ae" />
-)
+# Notepad GG Defaults
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e08d09d5-aaa7-48f8-be87-91e62ecb2e0b">
+</p>
+
+# Notepad GG colors
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/09be04e9-e810-40c1-9b65-d9e7376db2ae">
+</p>
 
 ---
 
