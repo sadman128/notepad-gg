@@ -60,16 +60,13 @@ Just did it out of curiosity and solving a issue
 
 ## Screenshots
 
-# Notepad GG Defaults
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/e08d09d5-aaa7-48f8-be87-91e62ecb2e0b">
-</p>
-
-# Notepad GG colors
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/09be04e9-e810-40c1-9b65-d9e7376db2ae">
+  <img src="https://github.com/user-attachments/assets/e08d09d5-aaa7-48f8-be87-91e62ecb2e0b"
+    width="68%" style="object-fit: cover;" />
+  <span style="display:inline-block;width:2px;height:320px;background-color:#ccc;margin:0 5px;"></span>
+  <img src="https://github.com/user-attachments/assets/09be04e9-e810-40c1-9b65-d9e7376db2ae"
+    width="28%" style="object-fit: cover;" />
 </p>
 
 ---
