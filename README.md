@@ -3,8 +3,11 @@
 A modern, minimal desktop text editor with a column mode for long heighted texts built on Electron. Fast, keyboard-friendly, and designed to stay out of your way — with a few tricks up its sleeve.
 Just did it out of curiosity and solving a issue
 
-![Notepad GG — Main Interface](<img width="1415" height="864" alt="image" src="https://github.com/user-attachments/assets/7ebc4ece-ad8e-4a0c-b9b4-287b62c3bcfe" />
-)
+# Notepad GG — Main Interface
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7ebc4ece-ad8e-4a0c-b9b4-287b62c3bcfe"
+</p>
+
 
 ---
 
