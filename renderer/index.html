@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-scale="medium">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Notepad GG</title>
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body>
+
+<!-- ════ TITLE BAR ════════════════════════════════════════════ -->
+<header id="titlebar">
+  <div class="tb-brand">
+    <div class="tb-logo">
+      <img id="tb-logo-img" src="" alt="GG"
+        style="width:20px;height:20px;object-fit:contain;border-radius:4px;display:none;"/>
+      <div id="tb-logo-fallback" style="display:flex;width:20px;height:20px;border-radius:4px;background:var(--t1);align-items:center;justify-content:center;">
+        <svg viewBox="0 0 12 12" fill="none" style="width:10px;height:10px;color:var(--base)"><path d="M2 10l3.5-8 3.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="3.3" y1="7.5" x2="8.7" y2="7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <span class="tb-appname">Notepad GG</span>
+    <div class="tb-pipe"></div>
+    <span id="tb-filename">Untitled</span>
+  </div>
+  <div id="win-controls">
+    <button class="wc" id="wc-min" title="Minimize">
+      <svg viewBox="0 0 10 10" fill="none"><rect x="1" y="4.5" width="8" height="1" rx=".5" fill="currentColor"/></svg>
+    </button>
+    <button class="wc" id="wc-max" title="Maximize">
+      <svg viewBox="0 0 10 10" fill="none"><rect x="1.5" y="1.5" width="7" height="7" stroke="currentColor" stroke-width="1.1" rx=".5"/></svg>
+    </button>
+    <button class="wc wc-close" id="wc-cls" title="Close">
+      <svg viewBox="0 0 10 10" fill="none"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ════ TAB BAR ══════════════════════════════════════════════ -->
+<nav id="tabbar">
+  <button id="tabs-prev" title="Scroll tabs left" style="display:none">
+    <svg viewBox="0 0 10 10" fill="none"><polyline points="7,2 3,5 7,8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  </button>
+  <div id="tabs-scroll"><div id="tabs-list"></div></div>
+  <button id="tabs-next" title="Scroll tabs right" style="display:none">
+    <svg viewBox="0 0 10 10" fill="none"><polyline points="3,2 7,5 3,8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  </button>
+  <button id="btn-newtab" title="New Tab  Ctrl+T">
+    <svg viewBox="0 0 12 12" fill="none"><line x1="6" y1="1.5" x2="6" y2="10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="1.5" y1="6" x2="10.5" y2="6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+
+<!-- ════ TOOLBAR ══════════════════════════════════════════════ -->
+<div id="toolbar">
+  <button id="btn-menu">
+    <svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="3.5" x2="13" y2="3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="1" y1="10.5" x2="13" y2="10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    File
+  </button>
+  <div class="tdiv"></div>
+  <div id="mode-pills">
+    <button class="mpill active" data-mode="default" id="pill-def">Default</button>
+    <button class="mpill"        data-mode="column"  id="pill-col">Column</button>
+  </div>
+  <div class="tdiv"></div>
+  <div id="col-ctrls">
+    <span class="ctl-lbl">Width</span>
+    <div class="sl-group" style="width:220px;">
+      <div class="sl-pill">
+        <input type="range"  id="sl-colw" min="100" max="760" step="10" value="320"/>
+        <input type="number" id="in-colw" class="sl-num" min="100" max="760" step="10" value="320"/>
+        <span  class="sl-unit">px</span>
+      </div>
+      <button class="auto-badge on" id="auto-badge" title="Auto-fit — click to reset">Auto</button>
+    </div>
+    <div class="tdiv"></div>
+  </div>
+  <span class="ctl-lbl">Font</span>
+  <div class="sl-group" style="width:180px;">
+    <div class="sl-pill">
+      <input type="range"  id="sl-font" min="10" max="28" step=".5" value="13.5"/>
+      <input type="number" id="in-font" class="sl-num" min="10" max="28" step=".5" value="13.5"/>
+      <span  class="sl-unit">px</span>
+    </div>
+  </div>
+  <div id="theme-ctrls">
+    <div class="toggle-wrap">
+      <span class="tog-lbl">Dark</span>
+      <div class="toggle-sw" id="theme-tog"></div>
+      <span class="tog-lbl">Light</span>
+    </div>
+    <div class="tdiv"></div>
+    <span class="ctl-lbl">☀ Warm</span>
+    <div class="sl-pill" id="warm-pill">
+      <input type="range"  id="sl-warm" min="0" max="100" step="1" value="0"/>
+      <input type="number" id="in-warm" class="sl-num" min="0" max="100" step="1" value="0"/>
+      <span  class="sl-unit">%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════ DROPDOWN MENU ════════════════════════════════════════ -->
+<div id="dropdown">
+  <div class="dd-sec">File</div>
+  <div class="dd-row" id="dd-new">
+    <div class="dd-left"><svg viewBox="0 0 16 16" fill="none"><rect x="3.5" y="2" width="9" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/><line x1="8" y1="6" x2="8" y2="11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="dd-label">New Tab</span></div>
+    <span class="dd-key">Ctrl+T</span>
+  </div>
+  <div class="dd-row" id="dd-open">
+    <div class="dd-left"><svg viewBox="0 0 16 16" fill="none"><path d="M2 6a2 2 0 012-2h2.5L8 5.5H13A1.5 1.5 0 0114.5 7v5A1.5 1.5 0 0113 13.5H3A1.5 1.5 0 011.5 12V7A1.5 1.5 0 012 6z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg><span class="dd-label">Open File…</span></div>
+    <span class="dd-key">Ctrl+O</span>
+  </div>
+  <div class="dd-div"></div>
+  <div class="dd-row disabled" id="dd-save">
+    <div class="dd-left"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2.5A1.5 1.5 0 014.5 1h7L13 2.5V13a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 013 13V2.5z" stroke="currentColor" stroke-width="1.2"/><rect x="6" y="1" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1.2"/><rect x="4.5" y="9" width="7" height="4.5" rx=".5" stroke="currentColor" stroke-width="1.2"/></svg><span class="dd-label">Save</span></div>
+    <span class="dd-key">Ctrl+S</span>
+  </div>
+  <div class="dd-row disabled" id="dd-saveas">
+    <div class="dd-left"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2.5A1.5 1.5 0 014.5 1h6l3 3V13a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 013 13V2.5z" stroke="currentColor" stroke-width="1.2"/><path d="M10.5 1v3h3" stroke="currentColor" stroke-width="1.2"/><rect x="4.5" y="9" width="7" height="4.5" rx=".5" stroke="currentColor" stroke-width="1.2"/></svg><span class="dd-label">Save As…</span></div>
+    <span class="dd-key">Ctrl+⇧S</span>
+  </div>
+  <div class="dd-div"></div>
+
+  <!-- UI Scale -->
+  <div class="dd-sec">UI Scale</div>
+  <div class="dd-scale-row">
+    <div class="dd-scale-opts">
+      <button class="scale-btn" data-scale="small">Small</button>
+      <button class="scale-btn active" data-scale="medium">Medium</button>
+      <button class="scale-btn" data-scale="large">Large</button>
+      <button class="scale-btn" data-scale="blind">Blind</button>
+    </div>
+  </div>
+
+  <!-- Editor Font -->
+  <div class="dd-sec">Editor Font</div>
+  <div class="dd-font-grid">
+    <button class="font-btn active" data-font="DM Mono"               style="font-family:'DM Mono',monospace">DM Mono</button>
+    <button class="font-btn"        data-font="JetBrains Mono"        style="font-family:'JetBrains Mono',monospace">JetBrains</button>
+    <button class="font-btn"        data-font="Fira Code"             style="font-family:'Fira Code',monospace">Fira Code</button>
+    <button class="font-btn"        data-font="Source Code Pro"       style="font-family:'Source Code Pro',monospace">Source CP</button>
+    <button class="font-btn"        data-font="IBM Plex Mono"         style="font-family:'IBM Plex Mono',monospace">IBM Plex</button>
+    <button class="font-btn"        data-font="Cascadia Code"         style="font-family:'Cascadia Code',monospace">Cascadia</button>
+    <button class="font-btn"        data-font="Space Mono"            style="font-family:'Space Mono',monospace">Space Mono</button>
+    <button class="font-btn"        data-font="Nunito"                style="font-family:'Nunito',sans-serif">Nunito</button>
+    <button class="font-btn"        data-font="Literata"              style="font-family:'Literata',serif">Literata</button>
+    <button class="font-btn"        data-font="Atkinson Hyperlegible" style="font-family:'Atkinson Hyperlegible',sans-serif">Atkinson</button>
+  </div>
+
+  <!-- Colors -->
+  <div class="dd-div"></div>
+  <div class="dd-sec">Colors</div>
+  <div class="dd-colors">
+    <div class="color-row">
+      <span class="color-lbl">Editor BG</span>
+      <input type="color" class="color-pick" data-var="--ed-bg" title="Editor background"/>
+      <button class="color-reset" data-var="--ed-bg" title="Reset to default">↺</button>
+    </div>
+    <div class="color-row">
+      <span class="color-lbl">Editor Text</span>
+      <input type="color" class="color-pick" data-var="--ed-fg" title="Editor text color"/>
+      <button class="color-reset" data-var="--ed-fg" title="Reset to default">↺</button>
+    </div>
+    <div class="color-row">
+      <span class="color-lbl">App BG</span>
+      <input type="color" class="color-pick" data-var="--base" title="App chrome background"/>
+      <button class="color-reset" data-var="--base" title="Reset to default">↺</button>
+    </div>
+    <div class="color-row">
+      <span class="color-lbl">Accent</span>
+      <input type="color" class="color-pick" data-var="--accent" title="Accent / link color"/>
+      <button class="color-reset" data-var="--accent" title="Reset to default">↺</button>
+    </div>
+    <div class="color-row">
+      <span class="color-lbl">Search HL</span>
+      <input type="color" class="color-pick" data-var="--search-hl-rgb" title="Search highlight color"/>
+      <button class="color-reset" data-var="--search-hl-rgb" title="Reset to default">↺</button>
+    </div>
+  </div>
+
+  <div class="dd-div"></div>
+  <div class="dd-row danger" id="dd-close">
+    <div class="dd-left"><svg viewBox="0 0 16 16" fill="none"><line x1="4" y1="4" x2="12" y2="12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="4" x2="4" y2="12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span class="dd-label">Close Tab</span></div>
+    <span class="dd-key">Ctrl+W</span>
+  </div>
+</div>
+<div id="absorber"></div>
+
+<!-- ════ EDITOR AREA ══════════════════════════════════════════ -->
+<main id="editor-area">
+  <div id="default-wrap">
+    <div id="ln-gutter"></div>
+    <!-- Search highlight overlay — sits behind the textarea -->
+    <div id="search-hl" aria-hidden="true"></div>
+    <textarea id="editor-ta" spellcheck="false" autocomplete="off"
+      autocorrect="off" autocapitalize="off"
+      placeholder="Start writing…"></textarea>
+  </div>
+  <div id="col-container"></div>
+
+  <!-- Search / Replace panel -->
+  <div id="search-panel">
+    <div class="sp-head">
+      <span class="sp-title">Find &amp; Replace</span>
+      <button id="sp-close" title="Close  Esc">✕</button>
+    </div>
+    <div class="sp-row">
+      <input id="sp-query"   class="sp-input" type="text" placeholder="Find…" spellcheck="false"/>
+      <span  id="sp-count"></span>
+      <button id="sp-prev"    class="sp-icon-btn" title="Previous  Shift+Enter">↑</button>
+      <button id="sp-next"    class="sp-icon-btn" title="Next  Enter">↓</button>
+    </div>
+    <div class="sp-row">
+      <input id="sp-replace" class="sp-input" type="text" placeholder="Replace with…" spellcheck="false"/>
+      <button id="sp-rep-one" class="sp-btn"         title="Replace one  Enter">Replace</button>
+      <button id="sp-rep-all" class="sp-btn primary" title="Replace all">All</button>
+    </div>
+    <div class="sp-opts">
+      <label><input id="sp-case"  type="checkbox"/>Aa Case</label>
+      <label><input id="sp-whole" type="checkbox"/>Word</label>
+      <label><input id="sp-regex" type="checkbox">.*  Regex</label>
+    </div>
+  </div>
+
+  <button id="quick-jump" title="Jump to last line  Ctrl+End">
+    <svg viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><polyline points="3,6.5 6,9.5 9,6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="2" y1="11" x2="10" y2="11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    Last line
+  </button>
+</main>
+
+<!-- ════ STATUS BAR ═══════════════════════════════════════════ -->
+<footer id="statusbar">
+  <div class="st">Ln <b id="st-ln">1</b></div>
+  <div class="st-sep"></div>
+  <div class="st">Col <b id="st-col">1</b></div>
+  <div class="st-sep"></div>
+  <div class="st"><b id="st-lines">0</b> lines</div>
+  <div class="st-sep"></div>
+  <div class="st"><b id="st-chars">0</b> chars</div>
+  <div class="st-right">
+    <div class="st">UTF-8</div>
+    <div class="st-sep"></div>
+    <div class="st" id="st-ram-wrap" title="App RAM usage">RAM: <b id="st-ram">…</b></div>
+    <div class="st-sep"></div>
+    <div class="st" id="st-cpu-wrap" title="App CPU usage">CPU: <b id="st-cpu">…</b></div>
+    <div class="st-sep"></div>
+    <a id="gh-link" href="#" tabindex="-1" title="github.com/sadman128">⌥ sadman128</a>
+    <div class="st-sep"></div>
+    <div class="st-badge" id="st-mode">Default</div>
+  </div>
+</footer>
+
+<!-- ════ MODAL ════════════════════════════════════════════════ -->
+<div id="modal-overlay">
+  <div id="modal-box">
+    <div id="modal-title"></div>
+    <div id="modal-msg"></div>
+    <div id="modal-btns"></div>
+  </div>
+</div>
+
+<!-- ════ TAB CONTEXT MENU ════════════════════════════════════ -->
+<div id="tab-ctx">
+  <div id="ctx-filename" class="ctx-header"></div>
+  <div id="ctx-meta" class="ctx-meta"><span id="ctx-timestamp"></span><span id="ctx-filesize"></span></div>
+  <div class="ctx-div"></div>
+  <div class="ctx-item" id="ctx-rename" data-requires-file>
+    <svg viewBox="0 0 14 14" fill="none"><path d="M2 10.5l1.5-1.5 7-7L12 3.5l-7 7L2 12l.5-1.5z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+    Rename
+  </div>
+  <div class="ctx-item" id="ctx-copy" data-requires-file>
+    <svg viewBox="0 0 14 14" fill="none"><rect x="5" y="5" width="7" height="8" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M9 5V3a1 1 0 00-1-1H3a1 1 0 00-1 1v7a1 1 0 001 1h2" stroke="currentColor" stroke-width="1.1"/></svg>
+    Copy File As…
+  </div>
+  <div class="ctx-item" id="ctx-location" data-requires-file>
+    <svg viewBox="0 0 14 14" fill="none"><path d="M2 4a1 1 0 011-1h2.5L7 4.5H11A1 1 0 0112 5.5v5A1 1 0 0111 11.5H3A1 1 0 012 10.5V4z" stroke="currentColor" stroke-width="1.1" fill="none"/></svg>
+    Open File Location
+  </div>
+  <div class="ctx-div"></div>
+  <div class="ctx-item ctx-danger" id="ctx-delete" data-requires-file>
+    <svg viewBox="0 0 14 14" fill="none"><path d="M2 4h10M5 4V2.5h4V4M5.5 4v6.5M8.5 4v6.5M3 4l.5 7.5h7L11 4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Delete File from Disk
+  </div>
+  <div class="ctx-div"></div>
+  <div class="ctx-item" id="ctx-close">
+    <svg viewBox="0 0 14 14" fill="none"><line x1="3" y1="3" x2="11" y2="11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="11" y1="3" x2="3" y2="11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+    Close Tab
+  </div>
+</div>
+
+<!-- ════ SCRIPTS ══════════════════════════════════════════════ -->
+<script src="js/settings.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/themeManager.js"></script>
+<script src="js/tabManager.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/columnLayout.js"></script>
+<script src="js/fileManager.js"></script>
+<script src="js/search.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

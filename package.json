@@ -1,0 +1,60 @@
+{
+  "name": "notepad-gg",
+  "version": "1.11.0",
+  "description": "Notepad GG — Modern desktop text editor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64",
+    "build:portable": "electron-builder --win portable",
+    "build:installer": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "com.sadman128.notepad-gg",
+    "productName": "Notepad GG",
+    "directories": { "output": "dist" },
+    "files": [
+      "main.js",
+      "preload.js",
+      "assets/**/*",
+      "renderer/**/*"
+    ],
+    "win": {
+      "icon": "assets/logo.png",
+      "target": [
+        { "target": "nsis",     "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "fileAssociations": [
+      {
+        "ext": "txt",
+        "name": "Text Document",
+        "description": "Open with Notepad GG",
+        "role": "Editor"
+      },
+      {
+        "ext": "md",
+        "name": "Markdown Document",
+        "description": "Open with Notepad GG",
+        "role": "Editor"
+      },
+      {
+        "ext": "log",
+        "name": "Log File",
+        "description": "Open with Notepad GG",
+        "role": "Editor"
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3"
+  }
+}
