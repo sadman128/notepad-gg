@@ -66,7 +66,7 @@ Just did it out of curiosity and solving a issue
     width="68%" style="object-fit: cover;" />
   <span style="display:inline-block;width:2px;height:320px;background-color:#ccc;margin:0 5px;"></span>
   <img src="https://github.com/user-attachments/assets/09be04e9-e810-40c1-9b65-d9e7376db2ae"
-    width="28%" height="520px" style="object-fit: cover;" />
+    width="28%" height="480px" style="object-fit: cover;" />
 </p>
 
 ---
